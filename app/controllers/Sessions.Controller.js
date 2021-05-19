@@ -4,6 +4,9 @@ const Lecturers = require('../models/lecturer.model');
 const Tags = require('../models/Tag.model');
 const Subjects = require('../models/subject.model');
 const Student = require('../models/student.model');
+const OverLapSessions = require('../models/overlap.model');
+const ParallelSessions = require('../models/parallel.model');
+const ConSessions = require('../models/consecutive.model');
 
 
 
