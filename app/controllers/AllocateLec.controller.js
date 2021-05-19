@@ -1,4 +1,4 @@
-const AllocateLec = require("./../models/allocateLec.model");
+const AllocateLec = require("./../models/AllocateLec.model");
 const Lecturer = require('../models/lecturer.model');
 
 exports.add = (req, res) => {
