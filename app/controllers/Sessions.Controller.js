@@ -224,10 +224,17 @@ exports.delete_sessions = async (req, res) => {
             message: "Content can not be empty!"
         });
     }
-
-
-    
-    
+    var session_count_in_session = await Sessions.find({ _id: req.body.id }).countDocuments()
+    var session_count_overlap = await OverLapSessions.find({ $or: [{ session_01: req.body.id }, { session_02: req.body.id }] }).countDocuments()
+    var session_count_parallel = await ParallelSessions.find({ $or: [{ session_01: req.body.id }, { session_02: req.body.id }] }).countDocuments()
+    var session_count_con = await ConSessions.find({ $or: [{ session_01: req.body.id }, { session_02: req.body.id }] }).countDocuments()
+    console.log(session_count_overlap);
+    console.log(session_count_parallel);
+    console.log(session_count_con);
+    console.log(session_count_in_session);
+    var sub_total = parseInt(session_count_overlap) + parseInt(session_count_parallel) + parseInt(session_count_con)
+    console.log("Sub total " + sub_total);
+    if (sub_total == 0) {
         var result = await Sessions.findOneAndDelete({ _id: req.body.id })
         if (!result) {
             return res.status(400).send({
@@ -237,6 +244,11 @@ exports.delete_sessions = async (req, res) => {
         return res.status(200).send({
             message: "Deleted success"
         });
-    
+    }else{
+        console.log("Have Sessions");
+        return res.status(402).send({
+            message: "Please delete relevent sessions"
+        });
+    }
 
 }
