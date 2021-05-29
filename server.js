@@ -31,6 +31,8 @@ const AllocateLec = require("./app/routes/AllocateLec.route");
 const AllocateSession = require("./app/routes/AllocateSession.route");
 const GenerateSubGroupIdRoute = require("./app/routes/generateSubgroup.route");
 
+const GenerateRoute = require("./app/routes/generate.route");
+
 
 const dbConfig = require("./config/db.config");
 
@@ -63,6 +65,9 @@ app.use("/api/AllocateSession", AllocateSession);
 app.use("/api/GenerateSubGroup", GenerateSubGroupIdRoute);
 app.use("/api/parallel", ParallelRoute);
 app.use("/api/Not_overlap", OverlapRoute);
+app.use("/api/generate", GenerateRoute);
+
+
 app.use((req, res, next) => {
     const error = new Error("Not found");
     error.status = 404;
