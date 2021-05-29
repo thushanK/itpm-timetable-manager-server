@@ -29,7 +29,7 @@ const timeslot = require("./app/routes/timeslot.route");
 const AllocateGroup = require("./app/routes/AllocateGroup.route");
 const AllocateLec = require("./app/routes/AllocateLec.route");
 const AllocateSession = require("./app/routes/AllocateSession.route");
-
+const GenerateSubGroupIdRoute = require("./app/routes/generateSubgroup.route");
 
 
 const dbConfig = require("./config/db.config");
@@ -60,7 +60,7 @@ app.use("/api/timeslot", timeslot);
 app.use("/api/AllocateGroup", AllocateGroup);
 app.use("/api/AllocateLec", AllocateLec);
 app.use("/api/AllocateSession", AllocateSession);
-
+app.use("/api/GenerateSubGroup", GenerateSubGroupIdRoute);
 app.use("/api/parallel", ParallelRoute);
 app.use("/api/Not_overlap", OverlapRoute);
 app.use((req, res, next) => {
